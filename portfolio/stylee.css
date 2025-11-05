@@ -1,0 +1,85 @@
+.preloader {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .preloader .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+  }
+  
+  .preloader .loading-dots {
+    position: absolute;
+    width: 352px;
+    height: 59px;
+    top: 618px;
+    left: 544px;
+  }
+  
+  .preloader .ellipse {
+    left: 0;
+    background-color: #ff0303;
+    position: absolute;
+    width: 59px;
+    height: 59px;
+    top: 0;
+    border-radius: 29.33px;
+  }
+  
+  .preloader .ellipse-2 {
+    left: 196px;
+    background-color: #f2da00;
+    position: absolute;
+    width: 59px;
+    height: 59px;
+    top: 0;
+    border-radius: 29.33px;
+  }
+  
+  .preloader .ellipse-3 {
+    left: 98px;
+    background-color: #000aff;
+    position: absolute;
+    width: 59px;
+    height: 59px;
+    top: 0;
+    border-radius: 29.33px;
+  }
+  
+  .preloader .ellipse-4 {
+    left: 293px;
+    background-color: #46dd00;
+    position: absolute;
+    width: 59px;
+    height: 59px;
+    top: 0;
+    border-radius: 29.33px;
+  }
+  
+  .preloader .preem-pareva {
+    position: absolute;
+    width: 624px;
+    height: 162px;
+    top: 377px;
+    left: 428px;
+  }
+  
+  .preloader .text-wrapper {
+    position: absolute;
+    width: 624px;
+    top: -1px;
+    left: 0;
+    font-family: "Island Moments-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 145.3px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
