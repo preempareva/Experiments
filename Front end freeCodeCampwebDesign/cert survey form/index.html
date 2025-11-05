@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,intial-scale=1.0">
+    <link href="styles.css"rel="stylesheet">
+  </head>
+
+  <body class="body">
+    
+    <div class="container">
+
+      <header class="header">
+      <h1 id="title" class="text-center"> freeCodeCamp Survey Form </h1>
+        <p id="description" class="description-text-center">Thankyou for taking the time to help us improve the platform</p>  
+      </header>
+      <fieldset-1>
+
+      <form id="survey-form" >
+
+ <fieldset>
+        <div class="form-group">
+        <label id="name-label" for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
+        </div>
+         </fieldset>
+          <fieldset>
+        <div class="form-group">
+        <label id="email-label" for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+ </fieldset>
+    <fieldset>
+        <div class="form-group">
+        <label id="number-label" for="age">Age</label>
+        <input type="number" name="age" id="number" min="9" max="99" class="form-control" placeholder="Enter your age" required>
+        </div>
+    </fieldset>
+     <fieldset>
+        <div class="form-group">
+        <p1>Enter which option decscribes your current role ?</p1><br><br>
+        <select id="dropdown" name="role" class="form-control" required>
+          <option disabled selected>Select your current role</option>
+          <option value="student">Student</option>
+          <option value="job full">Full time Job</option>
+          <option value="learner full">Full time learner</option>
+          <option value="prefer">Prefer not to say</option>
+          <option value="other">Other</option>
+        </select>  
+        </div> 
+ </fieldset>
+  <fieldset>
+        <div class="form-group">
+        <p1>Would you recomment freeCodeCamp to a friend ?</p1><br>
+        <label><input name="user-recommended" type="radio" value="definetly" class="input-radio" >Definetly</label>
+        <label><input name="user-recommended" type="radio" value="not-aure" class="input-radio" >Not Sure</label>
+        <label><input name="user-recommended" type="radio" value="mayb" class="input-radio" >Mayb</label>
+        </div>
+ </fieldset>
+ <fieldset>
+        <div class="form-group">
+        <p1> What is your favourite feature of freeCodeCamp ?</p1><br><br>
+        <select id="dropdown" name="role" class="form-control" required>
+          <option disabled selected>Select your current role</option>
+          <option value="challanges">Challenges</option>
+          <option value="projects">Projects</option>
+          <option value="community">Community</option>
+          <option value="opensource">Open source</option>
+        </select>  
+        </div> 
+ </fieldset>
+  <fieldset>
+       <div class="form-group">
+         <p1>What would you like to see improved ?</p1><p1>(check all that applies)</p1><br>
+         <label><input name="prefer" value="Front-end-projects" type="checkbox" class="input-checkbox">Front End Projects</label>
+         <label><input name="prefer" value="Back-end-projects" type="checkbox" class="input-checkbox">Back End Projects</label>
+         <label><input name="prefer" value="data visualisation" type="checkbox" class="input-checkbox">Data Visualisation</label>
+         <label><input name="prefer" value="challenges" type="checkbox" class="input-checkbox">Challenges</label>
+         <label><input name="prefer" value="os-communit" type="checkbox" class="input-checkbox">Open Source Community</label>
+         <label><input name="prefer" value="gitter-help-rooms" type="checkbox" class="input-checkbox">Gitter Help Rooms</label>
+         <label><input name="prefer" value="videos" type="checkbox" class="input-checkbox">Videos</label>
+         <label><input name="prefer" value="city-meetups" type="checkbox" class="input-checkbox">City Meetups</label>
+         <label><input name="prefer" value="wiki" type="checkbox" class="input-checkbox">Wiki</label>
+         <label><input name="prefer" value="forum" type="checkbox" class="input-checkbox">Forum</label>
+         <label><input name="prefer" value="additional courses" type="checkbox" class="input-checkbox">Additional Courses</label>
+       </div>
+ </fieldset>
+  <fieldset>
+        <div class="form-group">
+          <p1>Any comments or suggestions</p1><br><br>
+          <textarea class="input-textarea" name="comment" id="comments" placeholder="Enter your comment here..."></textarea>
+        </div>
+  </fieldset>
+   <fieldset>
+        <div class="form-group">
+          <button type="submit" id="submit" class="submit-button">Submit</button>
+        </div>
+       </fieldset>
+      </form>
+      </fieldset-1>
+    </div>    
+  </body>
+</html>
