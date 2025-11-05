@@ -1,0 +1,279 @@
+.desktop {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .desktop .overlap-group-wrapper {
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 1440px;
+    height: 1024px;
+  }
+  
+  .desktop .overlap-group {
+    position: relative;
+    width: 1602px;
+    height: 1026px;
+    top: -1px;
+  }
+  
+  .desktop .ion-bicycle-outline {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    top: 40px;
+    left: 73px;
+  }
+  
+  .desktop .rectangle {
+    width: 842px;
+    height: 1026px;
+    top: 0;
+    left: 599px;
+    background-color: #bdb8b85c;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: transparent;
+    border-image: linear-gradient(
+        to bottom,
+        rgba(8.86, 51.88, 204.41, 0.96),
+        rgba(8.86, 51.88, 204.41, 0.95) 15%,
+        rgba(8.86, 51.88, 204.41, 0.94) 15.01%,
+        rgba(8.86, 51.88, 204.41, 0) 100%
+      )
+      1;
+    position: absolute;
+    filter: blur(4px);
+  }
+  
+  .desktop .div {
+    width: 600px;
+    height: 1024px;
+    top: 1px;
+    left: 0;
+    background-color: #0819b1de;
+    position: absolute;
+    filter: blur(4px);
+  }
+  
+  .desktop .bicycle-png {
+    position: absolute;
+    width: 920px;
+    height: 596px;
+    top: 429px;
+    left: 431px;
+    object-fit: cover;
+  }
+  
+  .desktop .b-ingcyle {
+    position: absolute;
+    top: 53px;
+    left: 33px;
+    font-family: "Inter-Black", Helvetica;
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 38.3px;
+    letter-spacing: 2.3px;
+    line-height: normal;
+  }
+  
+  .desktop .NEW-GIANT-MTB {
+    position: absolute;
+    top: 243px;
+    left: 94px;
+    font-family: "Inter-BlackItalic", Helvetica;
+    font-weight: 900;
+    font-style: italic;
+    color: #ffffff;
+    font-size: 48px;
+    letter-spacing: 4.32px;
+    line-height: 66.8px;
+  }
+  
+  .desktop .radix-icons-dropdown {
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    top: 53px;
+    left: 685px;
+  }
+  
+  .desktop .MODELS {
+    position: absolute;
+    width: 314px;
+    top: 50px;
+    left: 745px;
+    font-family: "jsMath-cmbx10-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 4.8px;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .text-wrapper {
+    font-family: "jsMath-cmbx10-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 4.8px;
+  }
+  
+  .desktop .span {
+    font-family: "Inconsolata-Black", Helvetica;
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 6px;
+  }
+  
+  .desktop .ABOUT {
+    position: absolute;
+    width: 267px;
+    top: 51px;
+    left: 408px;
+    font-family: "jsMath-cmbx10-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 4.8px;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .SERVICE {
+    position: absolute;
+    width: 332px;
+    top: 49px;
+    left: 1029px;
+    font-family: "jsMath-cmbx10-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 4.8px;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .works-with-world {
+    position: absolute;
+    width: 1508px;
+    height: 144px;
+    top: 532px;
+    left: 94px;
+    font-family: "Junge-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: normal;
+  }
+  
+  .desktop .text-wrapper-2 {
+    letter-spacing: 0;
+  }
+  
+  .desktop .text-wrapper-3 {
+    font-family: "Inconsolata-Medium", Helvetica;
+    font-weight: 500;
+    font-size: 40px;
+    letter-spacing: 6px;
+  }
+  
+  .desktop .text-wrapper-4 {
+    position: absolute;
+    height: 38px;
+    top: 718px;
+    left: 97px;
+    font-family: "Jura-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .text-wrapper-5 {
+    position: absolute;
+    height: 28px;
+    top: 159px;
+    left: 1195px;
+    font-family: "Jura-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .text-wrapper-6 {
+    position: absolute;
+    height: 28px;
+    top: 469px;
+    left: 1195px;
+    font-family: "Jura-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .weight {
+    position: absolute;
+    height: 28px;
+    top: 314px;
+    left: 1184px;
+    font-family: "Jura-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop .text-wrapper-7 {
+    position: absolute;
+    height: 51px;
+    top: 211px;
+    left: 1202px;
+    font-family: "Khula-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #0833ccef;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop .text-wrapper-8 {
+    position: absolute;
+    height: 51px;
+    top: 506px;
+    left: 1209px;
+    font-family: "Khula-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #0833ccf5;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop .text-wrapper-9 {
+    position: absolute;
+    height: 51px;
+    top: 356px;
+    left: 1202px;
+    font-family: "Khula-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #0833ccf2;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
