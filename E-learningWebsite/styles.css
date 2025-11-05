@@ -1,0 +1,202 @@
+body{
+    background-color: antiquewhite;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 65px;
+    background-color: burlywood;
+    color:black;
+}
+
+section ul,ol{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 65px;
+    justify-content: space-evenly;
+    color: black;
+}
+
+nav ul li{
+    padding: 0 12px;
+}
+
+.brand img{
+    width: 10em;
+    padding: 0 8px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    justify-content: right;
+}
+
+.btn {
+    padding: 0 20px;
+    height: 40px;
+    font-size: 1em;
+    text-transform: uppercase;
+    border-radius: 15px;
+    background: transparent;
+    cursor: pointer;
+    background-color: rgb(198, 166, 50);
+    color:black;
+    margin: 15px 10px;
+    font-weight: 400;
+    border:0;
+} 
+
+#Home{
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    margin:20px;
+    height:35em;
+    background-color:aliceblue;
+    background-image: url(https://blog.cdn.cmarix.com/blog/wp-content/uploads/2023/03/How-to-Create-E-learning-Website.jpg);
+    background-repeat: no-repeat;
+    
+}
+
+section h1,h2{
+   padding:0 20px;
+}
+
+section p{
+    padding:20px 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+section h1{
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: 4em;
+}
+
+#About{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    padding:30px;
+    margin:20px;
+    height:30em;
+    background-color:rgb(189, 170, 103);  
+}
+
+#About h1{
+    padding:20px;
+    margin-bottom: 10px;
+    font-size: 5em;
+}
+
+#About h2{
+    font-size:2em
+}
+
+ol{
+    text-align: center;
+    display: block;
+    text-emphasis-style: italic;
+    font-size:2em;
+    padding-bottom: 4em;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: calc(100% / 3);
+    margin: 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+.level {
+    background-color: rgb(189, 170, 103);;
+    color: black;
+    padding: 15px 0;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#Courses {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left:20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    
+}
+
+.alone{
+    text-align: center;
+    font-size: 5em;
+    margin-top: 0.5em;
+}
+  
+
+#Contact {
+    background-color: beige;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid brown ;
+}
+
+#Contact h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#Contact p {
+    margin-bottom: 20px;
+}
+
+#contact ul, li {
+    margin-bottom: 10px;
+}
+
+a.Contact-button {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+a.Contact-button:hover {
+    background-color: #555;
+}
+
+a:hover{ 
+    text-decoration:underline;
+    transition:ease-in-out
+  }
+
+ a{
+    text-decoration: none;
+    color:black;    
+ } 
