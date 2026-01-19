@@ -1,65 +1,37 @@
-/**
- * Instagram Bulk Likes Removal Script
- *
- * Purpose:
- * Automates the selection and removal of liked posts using Instagram’s
- * Bloks-based UI and the confirmation modal.
- *
- * Execution:
- * 1. Open Instagram in a desktop browser.
- * 2. Navigate to the likes activity page:
- *    https://www.instagram.com/your_activity/interactions/likes
- * 3. Open the browser developer console (Chrome recommended).
- * 4. Paste this script and execute it.
- *
- * Configuration:
- * - Modify the MAX constant to control how many likes
- *   are removed per execution cycle.
- * - Adjust timing constants (CYCLE_DELAY, SELECT_DELAY,
- *   ICON_DELAY, ACTION_DELAY, MODAL_DELAY) to tune reliability.
- *
- * Disclaimer:
- * Use at your own risk. The author assumes no responsibility for
- * account restrictions, action limits, or data loss resulting
- * from the use of this script.
- */
-
-
 (async function instagramBulkUnlike() {
   window.__STOP_IG_BULK_UNLIKE__ = false;
 
-  const MAX = 90;                 // how many likes per cycle
-  const CYCLE_DELAY = 20000;     // wait between cycles
-  const SELECT_DELAY = 1800;     // time to enter select mode
-  const ICON_DELAY = 500;        // delay between each selection click
+  const MAX = 80;
+  const CYCLE_DELAY = 40000;
+  const SELECT_DELAY = 1800;
+  const ICON_DELAY = 500;
   const ACTION_DELAY = 1200;
-  const MODAL_DELAY = 1000;
-  const SCROLL_DELAY = 2000;     // wait after each scroll for loading
+  const MODAL_DELAY = 1200;
+  const SCROLL_DELAY = 2000;
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  // Simulate a real user click event
+  // Simulate real user click
   function realClick(el) {
     el.scrollIntoView({ block: "center" });
-    ["mousedown", "mouseup", "click"].forEach((t) =>
+    ["mousedown", "mouseup", "click"].forEach((t) => {
       el.dispatchEvent(
         new MouseEvent(t, {
           bubbles: true,
           cancelable: true,
-          buttons: 1,
-        }),
-      ),
-    );
+          buttons: 1
+        })
+      );
+    });
   }
 
-  // Find the "Select" button to enter selection mode
+  // Find Select button
   function findSelectButton() {
     return [...document.querySelectorAll(
-      'div[data-bloks-name="bk.components.Flexbox"]',
+      'div[data-bloks-name="bk.components.Flexbox"]'
     )].find((el) => el.innerText?.trim() === "Select");
   }
 
-  // Activate selection mode by clicking the "Select" button
   async function activateSelectMode() {
     const btn = findSelectButton();
     if (!btn) throw new Error("Select button not found");
@@ -67,56 +39,53 @@
     await sleep(SELECT_DELAY);
   }
 
-  // Get all selectable like icons in the current view
+  // Get selectable icons
   function getSelectableIcons() {
     return document.querySelectorAll(
-      'div[data-bloks-name="ig.components.Icon"][style*="circle__outline"]',
+      'div[data-bloks-name="ig.components.Icon"][style*="circle__outline"]'
     );
   }
 
-  // Select likes up to the specified maximum
-async function selectLikes(max) {
-  let count = 0;
-  let lastCount = 0;
+  async function selectLikes(max) {
+    let count = 0;
+    let lastCount = 0;
 
-  while (count < max) {
-    const icons = getSelectableIcons();
+    while (count < max) {
+      const icons = getSelectableIcons();
 
-    for (const icon of icons) {
-      if (count >= max) break;
+      for (const icon of icons) {
+        if (count >= max) break;
 
-      const btn = icon.closest('[role="button"]');
-      if (!btn || btn.__clicked) continue;
+        const btn = icon.closest('[role="button"]');
+        if (!btn || btn.__clicked) continue;
 
-      btn.__clicked = true; // prevent double clicking
-      realClick(btn);
-      count++;
-      await sleep(ICON_DELAY);
+        btn.__clicked = true;
+        realClick(btn);
+        count++;
+        await sleep(ICON_DELAY);
+      }
+
+      if (count === lastCount) {
+        window.scrollBy(0, window.innerHeight);
+        await sleep(SCROLL_DELAY);
+
+        const newIcons = getSelectableIcons();
+        if (newIcons.length === icons.length) break;
+      }
+
+      lastCount = count;
     }
 
-    // If nothing new was selected, scroll and wait for more to load
-    if (count === lastCount) {
-      window.scrollBy(0, window.innerHeight);
-      await sleep(SCROLL_DELAY);
-
-      const newIcons = getSelectableIcons();
-      if (newIcons.length === icons.length) break; // reached end
-    }
-
-    lastCount = count;
+    return count;
   }
 
-  return count;
-}
-
-  // Find the "Unlike" button in the UI
+  // Find Unlike button
   function findUnlikeButton() {
     const span = [...document.querySelectorAll("span")]
       .find((el) => el.innerText?.trim() === "Unlike");
     return span?.closest("button, div");
   }
 
-  // Click the "Unlike" button to initiate unliking
   async function clickUnlike() {
     await sleep(ACTION_DELAY);
     const btn = findUnlikeButton();
@@ -124,13 +93,12 @@ async function selectLikes(max) {
     realClick(btn);
   }
 
-  // Find the confirmation button in the modal dialog
+  // Modal confirm
   function findModalConfirmButton() {
     return [...document.querySelectorAll("button")]
       .find((btn) => btn.innerText?.trim() === "Unlike");
   }
 
-  // Confirm the unliking action in the modal dialog
   async function confirmModal() {
     await sleep(MODAL_DELAY);
     const confirmBtn = findModalConfirmButton();
@@ -140,28 +108,61 @@ async function selectLikes(max) {
     confirmBtn.click();
   }
 
+  // 🔁 TAB REFRESH LOGIC
+
+  // 🔁 TAB REFRESH LOGIC (robust – uses tab order instead of text)
+
+function getTabs() {
+  return [...document.querySelectorAll('[role="tab"]')];
+}
+
+async function refreshLikesTab() {
+  const tabs = getTabs();
+
+  if (tabs.length < 2) {
+    console.warn("Could not find tab bar to refresh");
+    return;
+  }
+
+  const likesTab = tabs[0];     // first tab = Likes
+  const commentsTab = tabs[1];  // second tab = Comments
+
+  // Go to Comments
+  realClick(commentsTab);
+  await sleep(1500);
+
+  // Back to Likes
+  realClick(likesTab);
+  await sleep(3000); // wait for reload
+}
+
+
   let cycle = 1;
 
-  // Main execution loop
+  // 🔁 MAIN LOOP
   while (!window.__STOP_IG_BULK_UNLIKE__) {
     try {
       await activateSelectMode();
       const selected = await selectLikes(MAX);
 
       if (!selected) {
-        console.log("No likes remaining");
+        console.log("✅ No likes remaining. Finished.");
         break;
       }
 
       await clickUnlike();
       await confirmModal();
 
-      console.log(`Cycle ${cycle}: unliked ${selected}`);
-      cycle++;
+      console.log(`🔥 Cycle ${cycle}: unliked ${selected}`);
 
+      // Force refresh
+      await refreshLikesTab();
+
+      cycle++;
       await sleep(CYCLE_DELAY);
+
     } catch (e) {
-      console.warn("Stopped:", e.message);
+      console.warn("⛔ Stopped:", e.message);
       break;
     }
   }
