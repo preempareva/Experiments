@@ -1,0 +1,168 @@
+/**
+ * Instagram Bulk Likes Removal Script
+ *
+ * Purpose:
+ * Automates the selection and removal of liked posts using Instagram’s
+ * Bloks-based UI and the confirmation modal.
+ *
+ * Execution:
+ * 1. Open Instagram in a desktop browser.
+ * 2. Navigate to the likes activity page:
+ *    https://www.instagram.com/your_activity/interactions/likes
+ * 3. Open the browser developer console (Chrome recommended).
+ * 4. Paste this script and execute it.
+ *
+ * Configuration:
+ * - Modify the MAX constant to control how many likes
+ *   are removed per execution cycle.
+ * - Adjust timing constants (CYCLE_DELAY, SELECT_DELAY,
+ *   ICON_DELAY, ACTION_DELAY, MODAL_DELAY) to tune reliability.
+ *
+ * Disclaimer:
+ * Use at your own risk. The author assumes no responsibility for
+ * account restrictions, action limits, or data loss resulting
+ * from the use of this script.
+ */
+
+
+(async function instagramBulkUnlike() {
+  window.__STOP_IG_BULK_UNLIKE__ = false;
+
+  const MAX = 90;                 // how many likes per cycle
+  const CYCLE_DELAY = 20000;     // wait between cycles
+  const SELECT_DELAY = 1800;     // time to enter select mode
+  const ICON_DELAY = 500;        // delay between each selection click
+  const ACTION_DELAY = 1200;
+  const MODAL_DELAY = 1000;
+  const SCROLL_DELAY = 2000;     // wait after each scroll for loading
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // Simulate a real user click event
+  function realClick(el) {
+    el.scrollIntoView({ block: "center" });
+    ["mousedown", "mouseup", "click"].forEach((t) =>
+      el.dispatchEvent(
+        new MouseEvent(t, {
+          bubbles: true,
+          cancelable: true,
+          buttons: 1,
+        }),
+      ),
+    );
+  }
+
+  // Find the "Select" button to enter selection mode
+  function findSelectButton() {
+    return [...document.querySelectorAll(
+      'div[data-bloks-name="bk.components.Flexbox"]',
+    )].find((el) => el.innerText?.trim() === "Select");
+  }
+
+  // Activate selection mode by clicking the "Select" button
+  async function activateSelectMode() {
+    const btn = findSelectButton();
+    if (!btn) throw new Error("Select button not found");
+    realClick(btn);
+    await sleep(SELECT_DELAY);
+  }
+
+  // Get all selectable like icons in the current view
+  function getSelectableIcons() {
+    return document.querySelectorAll(
+      'div[data-bloks-name="ig.components.Icon"][style*="circle__outline"]',
+    );
+  }
+
+  // Select likes up to the specified maximum
+async function selectLikes(max) {
+  let count = 0;
+  let lastCount = 0;
+
+  while (count < max) {
+    const icons = getSelectableIcons();
+
+    for (const icon of icons) {
+      if (count >= max) break;
+
+      const btn = icon.closest('[role="button"]');
+      if (!btn || btn.__clicked) continue;
+
+      btn.__clicked = true; // prevent double clicking
+      realClick(btn);
+      count++;
+      await sleep(ICON_DELAY);
+    }
+
+    // If nothing new was selected, scroll and wait for more to load
+    if (count === lastCount) {
+      window.scrollBy(0, window.innerHeight);
+      await sleep(SCROLL_DELAY);
+
+      const newIcons = getSelectableIcons();
+      if (newIcons.length === icons.length) break; // reached end
+    }
+
+    lastCount = count;
+  }
+
+  return count;
+}
+
+  // Find the "Unlike" button in the UI
+  function findUnlikeButton() {
+    const span = [...document.querySelectorAll("span")]
+      .find((el) => el.innerText?.trim() === "Unlike");
+    return span?.closest("button, div");
+  }
+
+  // Click the "Unlike" button to initiate unliking
+  async function clickUnlike() {
+    await sleep(ACTION_DELAY);
+    const btn = findUnlikeButton();
+    if (!btn) throw new Error("Unlike action not found");
+    realClick(btn);
+  }
+
+  // Find the confirmation button in the modal dialog
+  function findModalConfirmButton() {
+    return [...document.querySelectorAll("button")]
+      .find((btn) => btn.innerText?.trim() === "Unlike");
+  }
+
+  // Confirm the unliking action in the modal dialog
+  async function confirmModal() {
+    await sleep(MODAL_DELAY);
+    const confirmBtn = findModalConfirmButton();
+    if (!confirmBtn) throw new Error("Modal confirmation not found");
+    confirmBtn.focus();
+    await sleep(100);
+    confirmBtn.click();
+  }
+
+  let cycle = 1;
+
+  // Main execution loop
+  while (!window.__STOP_IG_BULK_UNLIKE__) {
+    try {
+      await activateSelectMode();
+      const selected = await selectLikes(MAX);
+
+      if (!selected) {
+        console.log("No likes remaining");
+        break;
+      }
+
+      await clickUnlike();
+      await confirmModal();
+
+      console.log(`Cycle ${cycle}: unliked ${selected}`);
+      cycle++;
+
+      await sleep(CYCLE_DELAY);
+    } catch (e) {
+      console.warn("Stopped:", e.message);
+      break;
+    }
+  }
+})();
